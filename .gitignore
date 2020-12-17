@@ -1,0 +1,11 @@
+PirateRouletteNetworkGame/Library/
+PirateRouletteNetworkGame/obj/
+PirateRouletteNetworkGame/.vs/
+PirateRouletteNetworkGame/Temp/
+*.csproj
+*.sln
+PirateRouletteNetworkGame/Logs/
+
+
+*.json
+
