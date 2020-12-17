@@ -11,14 +11,16 @@ public class CollisionColumnScript : MonoBehaviour
     public GameObject person;
     Rigidbody rb;
     public GameObject gameOver;
+    public GameObject pass;
 
     private void Start()
     {
-        randomNum = Random.Range(0, 18);   // 랜덤 숫자 정하기
+        randomNum = Random.Range(1, 18);   // 랜덤 숫자 정하기
         rb = person.gameObject.GetComponent<Rigidbody>();  //해적의 리지드바디
         gameOver.SetActive(false);
+        pass.SetActive(false);
     }
-
+   
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Knife")  // 칼이 들어올때
@@ -39,9 +41,20 @@ public class CollisionColumnScript : MonoBehaviour
             ActiveScript.Instance.active = false;  // 끝나면 다른거 선택불가
             Finish();
         }
+        else
+        {
+            StartCoroutine("Pass");
+        }
     }
 
-    public void Finish()  // 종료 함수
+    IEnumerator Pass()  //통과 효과
+    {
+        pass.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        pass.SetActive(false);
+    }
+
+    public void Finish()  // 종료 효과
     {
         // 해적 튀어나가기
 

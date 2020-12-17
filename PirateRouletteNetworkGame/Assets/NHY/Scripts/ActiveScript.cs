@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+//n번째 플레이어의 조작을 제어
 public class ActiveScript : MonoBehaviour
 {
     public static ActiveScript Instance;
