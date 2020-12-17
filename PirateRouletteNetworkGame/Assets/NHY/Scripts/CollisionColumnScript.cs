@@ -11,6 +11,7 @@ public class CollisionColumnScript : MonoBehaviour
     public GameObject person;
     Rigidbody rb;
     public GameObject gameOver;
+
     private void Start()
     {
         randomNum = Random.Range(0, 18);   // 랜덤 숫자 정하기
@@ -18,27 +19,34 @@ public class CollisionColumnScript : MonoBehaviour
         gameOver.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)  
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Knife")  // 칼이 들어올때
         {
-            other.gameObject.GetComponent<KnifeScript>().enabled = false;  // 움직임 코드를 멈추고
-           
-            nowNum++;  //숫자 증가
-          
-            if (nowNum == randomNum)   // 만약 현재 숫자가 랜덤숫자면 
-            {
-              
-                other.gameObject.GetComponent<Renderer>().material.color = Color.red;  // 칼 색깔 빨강으로 바뀜
-
-
-                // 해적 튀어나가기
-                
-                rb.AddForce(Vector3.up* 100+(-Vector3.right*50));
-
-                gameOver.SetActive(true);
-
-            }
+            KnifePlus(other.gameObject);
         }
+    }
+
+    public void KnifePlus(GameObject nowKnife)  // 칼 추가 함수
+    {
+        nowKnife.GetComponent<KnifeScript>().enabled = false;  // 움직임 코드를 멈추고
+        nowNum++;  //숫자 증가
+        ActiveScript.Instance.active = true;  // 칼이 다 들어가면 다른거 선택가능
+
+        if (nowNum == randomNum)   // 만약 현재 숫자가 랜덤숫자면 
+        {
+            nowKnife.GetComponent<Renderer>().material.color = Color.red;  // 칼 색깔 빨강으로 바뀜
+            ActiveScript.Instance.active = false;  // 끝나면 다른거 선택불가
+            Finish();
+        }
+    }
+
+    public void Finish()  // 종료 함수
+    {
+        // 해적 튀어나가기
+
+        rb.AddForce(Vector3.up * 100 + (-Vector3.right * 50));
+
+        gameOver.SetActive(true);
     }
 }
