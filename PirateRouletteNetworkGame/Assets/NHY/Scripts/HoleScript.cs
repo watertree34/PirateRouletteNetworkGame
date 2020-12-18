@@ -12,6 +12,8 @@ public class HoleScript : MonoBehaviour
     public GameObject knife;
 
     bool Selected;
+
+    public Client cl;
     void Start()
     {
         holeRenderer = gameObject.GetComponent<Renderer>();
@@ -33,6 +35,11 @@ public class HoleScript : MonoBehaviour
 
     private void OnMouseDown()   // 마우스 클릭하면
     {
+       cl.PutKnife();
+    }
+
+    public void SpawnKnife()
+    {
         if ((Selected == false) && (ActiveScript.Instance.active == true))
         {
             GameObject nowKnife = Instantiate(knife);  // 칼 생기기
@@ -44,5 +51,4 @@ public class HoleScript : MonoBehaviour
             ActiveScript.Instance.active = false;  // 칼이 들어갈때까지 다른거 선택안되게
         }
     }
-
 }

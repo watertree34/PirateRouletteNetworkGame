@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraRotate : MonoBehaviour
 {
     float now_y_Angle;
+    public Client cl;
 
     private void Start()
     {
@@ -24,7 +25,7 @@ public class CameraRotate : MonoBehaviour
         if (ActiveScript.Instance.active == true)
         {
             ChangeAngle(40);   // 40도씩 회전
-
+            cl.SetCamPointValue(transform.eulerAngles.y);
         }
     }
 
@@ -33,7 +34,7 @@ public class CameraRotate : MonoBehaviour
         if (ActiveScript.Instance.active == true)
         {
             ChangeAngle(-40); // -40도씩 회전
-
+            cl.SetCamPointValue(transform.eulerAngles.y);
         }
     }
 

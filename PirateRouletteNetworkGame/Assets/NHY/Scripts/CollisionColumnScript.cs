@@ -47,7 +47,7 @@ public class CollisionColumnScript : MonoBehaviour
         }
     }
 
-    IEnumerator Pass()  //통과 효과
+    public IEnumerator Pass()  //통과 효과
     {
         pass.SetActive(true);
         yield return new WaitForSeconds(0.5f);
