@@ -10,3 +10,10 @@ PirateRouletteNetworkGame/Logs/
 
 *.json
 
+PirateRouletteNetworkGameServer/Library/
+PirateRouletteNetworkGameServer/obj/
+PirateRouletteNetworkGameServer/.vs/
+PirateRouletteNetworkGameServer/Temp/
+
+PirateRouletteNetworkGameServer/Logs/
+
